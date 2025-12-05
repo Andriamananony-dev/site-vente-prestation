@@ -1,0 +1,48 @@
+services:
+  - type: web
+    name: prestaservices
+    runtime: php
+    plan: free
+    buildCommand: bash build.sh
+    startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
+    envVars:
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: prestaservices-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: prestaservices-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: prestaservices-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: prestaservices-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: prestaservices-db
+          property: password
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_DRIVER
+        value: database
+
+databases:
+  - name: prestaservices-db
+    databaseName: prestaservices
+    plan: free
+
