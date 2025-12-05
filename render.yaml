@@ -1,10 +1,9 @@
 services:
   - type: web
     name: prestaservices
-    runtime: php
+    env: docker
     plan: free
-    buildCommand: bash build.sh
-    startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: APP_KEY
         generateValue: true
@@ -45,4 +44,3 @@ databases:
   - name: prestaservices-db
     databaseName: prestaservices
     plan: free
-
