@@ -33,3 +33,5 @@ php artisan migrate --force --seed
 
 echo "✅ Build complete!"
 
+
+

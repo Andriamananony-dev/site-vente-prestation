@@ -45,3 +45,5 @@ EXPOSE 8080
 # Start application
 CMD php artisan migrate --force --seed && php artisan serve --host=0.0.0.0 --port=8080
 
+
+

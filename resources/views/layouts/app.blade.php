@@ -12,7 +12,10 @@
 </head>
 <body class="min-h-screen flex flex-col bg-white">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100" x-data="{ open: false, cartCount: window.cart.getCount() }" @cart-updated.window="cartCount = window.cart.getCount()">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100" x-data="{ 
+        open: false, 
+        get cartCount() { return window.cart ? window.cart.getCount() : 0; }
+    }" @cart-updated.window="$nextTick(() => {})">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0">
@@ -144,4 +147,6 @@
     </footer>
 </body>
 </html>
+
+
 
